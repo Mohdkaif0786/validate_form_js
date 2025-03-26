@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validate form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Validate form</h1>
+    <form  onsubmit="return  ValidateForm()">
+        <div class="form-filled">
+            
+            <input type="text" name="fname" placeholder="Enter Name"><br>
+            <span class="formerror"></span>
+        </div>
+        <div class="form-filled">
+            <input type="email" name="email" placeholder="Enter Email"><br>
+            <span class="formerror"></span>
+        </div>
+        <div class="form-filled">
+            <input type="number" name="number" placeholder="Enter Number"><br>
+            <span class="formerror"></span>
+        </div>
+        <div class="form-filled">
+            <input type="password" name="password" placeholder="Enter Password"><br>
+            <span class="formerror"></span>
+        </div>
+        <div class="form-filled">
+            <input type="password" name="cpassword" placeholder="Enter Password"><br>
+            <span class="formerror"></span>
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+
+
+<script>
+    let inputFilld=document.querySelectorAll(".form-filled");
+    function clearErrMsg(){
+        inputFilld.forEach(filled=>filled.lastElementChild.textContent="");
+    } 
+
+    function setError(errElm,errMsg){
+        console.log(errElm,errMsg)
+        errElm.textContent=errMsg;
+    }
+    function ValidateForm(){
+        let flag=true;
+        let name=inputFilld[0].firstElementChild.value;
+        let email=inputFilld[1].firstElementChild.value;
+        let number=inputFilld[2].firstElementChild.value;
+        let password=inputFilld[3].firstElementChild.value;
+        let cpassword=inputFilld[4].firstElementChild.value;
+        clearErrMsg();
+        console.log(email,number,password)
+        let Ereg=/^[a-zA-Z._0-9]{6,30}@[A-Za-z]{2,12}.[a-z0-9.]{2,8}/gm;
+        let Nreg=/^[789][0-9]{9}$/gm;
+        let Preg=/^[A-Za-z]{3,6}(@|_|$|-){1}[A-Z a-z0-9]{1,6}$/gm
+        //////////////////////////////////////
+        //  name filled vaildate
+        if(name.length==0 ){
+            setError(inputFilld[0].lastElementChild,"*name filled is mendeotery..");
+            flag= false;
+        }
+        else if(name.length<3 || name.length>12){
+            setError(inputFilld[0].lastElementChild,"*min 3 and max 12 char only..");
+            flag= false;
+        }
+        else if(!/^\D+$/g.test(name)){
+            setError(inputFilld[0].lastElementChild,"*number and special char not allowed");
+            flag=false;
+        }
+        
+        //////////////////////////////////////////////
+        if(email.length==0){
+            setError(inputFilld[1].lastElementChild,"*email filled is mendeotery..");
+            flag=false;
+        }
+        else if(!Ereg.test(email)){
+            setError(inputFilld[1].lastElementChild,"*email is not valid");
+            flag=false;
+        }
+        ////////////////////////////////////////////
+        if(number.length==0){
+            setError(inputFilld[2].lastElementChild,"*Number filled is mendeotery..");
+            flag=false;
+        }
+        else if(!Nreg.test(number)){
+            setError(inputFilld[2].lastElementChild,"*number should be 10 digit");
+            flag=false;
+        }
+        //////////////////////////////////////////////
+        if(password.length<5 || password.length>13){
+            setError(inputFilld[3].lastElementChild,"*password must be 5 and max 13 char");
+            flag=false;
+        }
+        else if(!Preg.test(password)){
+            setError(inputFilld[3].lastElementChild,"*password must be 1 number and 1 special char");
+            flag=false;
+        }
+        if(password!==cpassword){
+            setError(inputFilld[4].lastElementChild,"*confirm pasword not match");
+            flag=false;
+        }
+         return flag;
+   }
+
+</script>
+</html>

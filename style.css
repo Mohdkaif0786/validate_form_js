@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&family=Roboto:wght@300;400&display=swap');
+*{
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+
+    font-family: 'Roboto', sans-serif;
+}
+h1{
+    text-align: center;
+    margin-top: 20px;
+    font-size:2.4rem;
+}
+form{
+    width:60%;
+    margin: 30px auto;
+}
+.form-filled{
+  width: 100%;
+  margin-bottom: 10px;
+}
+.form-filled>input{
+    width: 100%;
+    height:43px;
+    padding:5px 20px;
+    border:  1px solid rgb(146, 145, 145,0.4);
+    border-radius: 3px;
+    outline: none;
+   font-size: 16px;
+}
+.formerror{
+    color:red;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+button{
+    width:140px;
+    cursor: pointer;
+    background-image:linear-gradient(to left,rgb(129, 108, 223),rgb(82, 67, 148)) ;
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    border: 1px solid transparent;
+}
+button:hover{
+    opacity: 0.8;
+}
